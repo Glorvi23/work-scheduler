@@ -1,12 +1,13 @@
-
 $(document).ready(function () {
     var arrayOfHours = ['09', '10', '11', '12', '13', '14', '15', '16', '17'];
     var background = $(".container"); //How to select the container
+    var hour = moment().format('kk');
+    var day = moment().format('dddd' + ', ' + 'MMMM' + ' ' + 'Do');
 
-    console.log("Document is ready!!")
+    // Displays the current day in the header
+    $("#currentDay").text(day);
 
-
-    for(var i = 0; i < arrayOfHours.length; i++){
+    for (var i = 0; i < arrayOfHours.length; i++) {
         // Row Creator
         var rowAdder = $("<div>");
         rowAdder.addClass("row");
@@ -17,15 +18,23 @@ $(document).ready(function () {
 
         // Time creator of the array?
         colTime.text(arrayOfHours[i]);
-        colTime.attr("id", arrayOfHours[i]);
-
+        // colTime.attr("id", arrayOfHours[i]);
 
         // Col Creator for textarea
         var colText = $("<div>");
         colText.addClass("col-8");
+        if (hour === arrayOfHours[i]) {
+            colText.addClass("present");
+        } else if (hour < arrayOfHours[i]) {
+            colText.addClass("future");
+        } else if (hour > arrayOfHours[i]) {
+            colText.addClass("past");
+        }
+        // colText.attr("id", arrayOfHours[i]);
 
         // text creator <textarea>
         var textCreator = $("<textarea>");
+        textCreator.attr("id", arrayOfHours[i]);
         colText.append(textCreator);
 
 
@@ -47,33 +56,28 @@ $(document).ready(function () {
     }
     getTasks();
 
-    $(".saveBtn").on("click", function(){
+    $(".saveBtn").on("click", function () {
         var hour = $(this).parent().prev().parent().children(".hour").text();
         var text = $(this).parent().prev().children("textarea").val();
 
-        console.log(hour, text);
+        // console.log(hour, text);
 
         localStorage.setItem(hour, text);
     })
 
-    function getTasks(){
-        for(var i = 0; i < arrayOfHours.length; i++){
+    $
+
+    function getTasks() {
+        for (var i = 0; i < arrayOfHours.length; i++) {
             var currentHour = arrayOfHours[i];
             var currentTask = localStorage.getItem(currentHour);
-            
-            if(currentTask !== null){
-                $("#" + currentHour).text(currentHour);
+
+            if (currentTask !== null) {
+                $("#" + currentHour).text(currentTask);
 
             }
         }
-        
+
     }
-   
-
-    //local storage
-    // localStorage.getItem()
-    // row.addClass("row time-block")
-    // 
-
 
 })
