@@ -42,7 +42,7 @@ $(document).ready(function () {
         // Col Creator for button
         var colButton = $("<div>");
         colButton.addClass("col-2");
-        colButton.attr("style", "padding-left: 0px")
+        colButton.attr("style", "padding-left: 0px;")
 
         // button creator  class="saveBtn"
         var buttonCreator = $("<button>");
