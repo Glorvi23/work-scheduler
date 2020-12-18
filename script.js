@@ -18,7 +18,6 @@ $(document).ready(function () {
 
         // Time creator of the array?
         colTime.text(arrayOfHours[i]);
-        // colTime.attr("id", arrayOfHours[i]);
 
         // Col Creator for textarea
         var colText = $("<div>");
@@ -30,17 +29,20 @@ $(document).ready(function () {
         } else if (hour > arrayOfHours[i]) {
             colText.addClass("past");
         }
-        // colText.attr("id", arrayOfHours[i]);
+        colText.attr("style", "padding: 0px")
 
         // text creator <textarea>
         var textCreator = $("<textarea>");
+        textCreator.addClass("description");
         textCreator.attr("id", arrayOfHours[i]);
+        textCreator.attr("style", "width: 100%; height: 100%;");
         colText.append(textCreator);
 
 
-        // Col Creator for textarea
+        // Col Creator for button
         var colButton = $("<div>");
         colButton.addClass("col-2");
+        colButton.attr("style", "padding-left: 0px")
 
         // button creator  class="saveBtn"
         var buttonCreator = $("<button>");
